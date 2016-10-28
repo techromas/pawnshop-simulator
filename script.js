@@ -25,8 +25,31 @@ onload  = function(){
 
         //output.innerHTML    += examination.arraiesToString();     //配列の表示
         
+
+        //tableの作成
+        var table   = document.createElement("table");
+        output.appendChild(table);
+        var tHeader = table.insertRow(-1);
+        var th0     = tHeader.insertCell(-1);
+        var th1     = tHeader.insertCell(-1);
+        var th2     = tHeader.insertCell(-1);
+        var th3     = tHeader.insertCell(-1);
+        th0.innerHTML   = "問題番号";
+        th1.innerHTML   = "質札期限";
+        th2.innerHTML   = "期限延長";
+        th3.innerHTML   = "受け出し";
+
         for(i=0;i<size;i++){
-            output.innerHTML    += (i+1) + "問目 : " + examination.getQuiz() + "<br>";
+            var quiz    = examination.getQuiz();
+            var tBody   = table.insertRow(-1);
+            var tb0     = tBody.insertCell(-1);
+            var tb1     = tBody.insertCell(-1);
+            var tb2     = tBody.insertCell(-1);
+            var tb3     = tBody.insertCell(-1);
+            tb0.innerHTML   = (i+1) + "問目";
+            tb1.innerHTML   = quiz.date;
+            tb2.innerHTML   = quiz.extension;
+            tb3.innerHTML   = quiz.takeout;
         }
         
     });
@@ -115,9 +138,64 @@ QuizSetter.prototype.typeToString   = function(type){
 }
 
 QuizSetter.prototype.getQuiz    = function(){
-    var cursor  = parseInt( Math.random() * this.daysArray.length );
-    var str = this.daysArray[cursor].toString() + "," + this.typeToString(this.typesArray[cursor]);
+    var cursor  = parseInt( Math.random() * this.daysArray.length);
+    var tmpDate = this.daysArray[cursor];
+    var tmpType = this.typesArray[cursor];
+    var quiz    = new Quiz(tmpDate.toString(),this.getExtensionString(tmpType),this.getTakeoutString(tmpType));
+    return quiz;
+}
+
+QuizSetter.prototype.getExtensionString = function(type){
+    var str;
+    switch(type){
+        case 0:
+            str = "不可";
+            break;
+        case 1:
+            str = "不可";
+            break;
+        case 2:
+            str = "2";
+            break;
+        case 3:
+            str = "2or3";
+            break;
+        default:
+            str = "流質";
+            break;
+    }
     return str;
+}
+
+QuizSetter.prototype.getTakeoutString   = function(type){
+    var str;
+    switch(type){
+        case 0:
+            str = "1";
+            break;
+        case 1:
+            str = "2";
+            break;
+        case 2:
+            str = "3";
+            break;
+        case 3:
+            str = "4";
+            break;
+        default:
+            str = "流質";
+            break;
+    }
+    return str;
+}
+
+class Quiz{
+    constructor(date,extension,takeout){
+        this.date       = date;
+        this.extension  = extension;
+        this.takeout    = takeout;
+    }
+
 }
 
 /********** class SuzuyaDate **********/
