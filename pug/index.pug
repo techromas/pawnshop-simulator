@@ -13,24 +13,91 @@ html(lang="ja")
             rel     = "stylesheet"
             href    = "css/style.css")
     include include1.txt
+
   body
-    h1 スズヤ日付計算出題プログラム
-    div
-      label 問題数
-      input#quantity(   type    = "text"
-                        value   = "15"
-                        style   = "width:3em;")
-      button#make(  type    = "button") 作成
-    div(    style   = "display:inline-blocks;")
-      label 平成
-      input#year(   type    = "text"
-                    style   = "width:3em;")
-      label 年
-      input#month(  type    = "text"
-                    style   = "width:3em;")
-      label 月
-      input#day(    type    = "text"
-                    style   = "width:3em;")
-      label 日
-    div#output
-    include include2.txt
+    header
+      div.navbar.navbar-default.navbar-fixed-top
+        div.container
+          div.navbar-header
+            a.navbar-brand(href="#") PawnshopSimulator
+            button.navbar-toggle( type        = "button"
+                                  data-toggle = "collapse"
+                                  data-target = "#navbar-main")
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+          div.navbar-collapse.collapse#navbar-main
+            ul.nav.navbar-nav
+              li
+                a dummy1
+              li
+                a dummy2
+              li
+                a dummy3
+
+    div.container
+
+      //----- ナビ -----
+      div.bs-docs-section
+        div.row
+          div.col-lg-12
+            div.page-header
+              h1 質料の月数計算問題
+        div.row
+          div.col-lg-12
+            div.bs-component
+              h3 説明
+              p 与えられた日付が流質期限の質札を延長または受け出す際に何か月分の質料をもらうか計算する問題が出ます。流質している場合や2or3ヵ月の延長が可能な場合もあります。
+
+
+      //----- 設定パネル -----
+      div.bs-docs-section
+        div.row
+          div.col-lg-12
+            div.page-header
+              h2 設定
+        div.row
+          div.col-lg-12
+            div.well.bs-component
+              div.form-horizontal
+                filedset
+
+                  legend 設定パネル
+
+                  div.form-group
+                    div.col-xs-9
+                      label 問題数
+                      input#quantity(   type    = "text"
+                                        value   = "15"
+                                        style   = "width:3em;")
+                  
+                  div.form-group
+                    div.col-xs-9
+                      label 平成
+                      input#year.form-inline(   type    = "text"
+                                                style   = "width:2em;")
+                      label 年
+                      input#month.form-inline(  type    = "text"
+                                                style   = "width:2em;")
+                      label 月
+                      input#day.form-inline(    type    = "text"
+                                                style   = "width:2em;")
+                      label 日
+
+                  div.form-group
+                    div.col-xs-9
+                      button#make.btn.btn-primary(  type    = "button") 作成
+
+
+      //----- 結果表示 -----    
+      div.bs-docs-section
+        div.row
+          div.col-lg-12
+            div.page-header
+              h2 問題
+        div.row
+          div.col-lg-12
+            div#output 作成ボタンを押して問題を作成してください。
+
+      //----- jQuery -----
+      include include2.txt
