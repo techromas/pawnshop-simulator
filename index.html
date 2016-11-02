@@ -2,26 +2,161 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8">
-    <script src="script.js" type="text/javascript"></script>
-    <title>suzuya</title>
-    <link type="text/css" rel="stylesheet" href="style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="js/script.js" type="text/javascript"></script>
+    <title>Suzuya</title>
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+ 
+    <style type="text/css">
+      body { padding-top: 80px; }
+      @media ( min-width: 768px ) {
+        #banner {
+          min-height: 300px;
+          border-bottom: none;
+        }
+        .bs-docs-section {
+          margin-top: 8em;
+        }
+        .bs-component {
+          position: relative;
+        }
+        .bs-component .modal {
+          position: relative;
+          top: auto;
+          right: auto;
+          left: auto;
+          bottom: auto;
+          z-index: 1;
+          display: block;
+        }
+        .bs-component .modal-dialog {
+          width: 90%;
+        }
+        .bs-component .popover {
+          position: relative;
+          display: inline-block;
+          width: 220px;
+          margin: 20px;
+        }
+        .nav-tabs {
+          margin-bottom: 15px;
+        }
+        .progress {
+          margin-bottom: 10px;
+        }
+      }
+    </style>
+
+    <!--[if lt IE 9]>
+      <script src="http//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
   </head>
   <body>
-    <h1>スズヤ日付計算出題プログラム</h1>
-    <div>
-      <label>問題数</label>
-      <input id="quantity" type="text" value="15" style="width:3em">
-      <button id="make" type="button">作成</button>
+    <header>
+      <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+          <div class="navbar-header"><a class="navbar-brand" href="#">PawnshopSimulator</a>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+          </div>
+          <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+              <li><a>dummy1</a></li>
+              <li><a>dummy2</a></li>
+              <li><a>dummy3</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <div class="bs-docs-section">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="page-header">
+              <h1>質料の月数計算問題</h1>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="bs-component">
+              <h3>説明</h3>
+              <p>与えられた日付が流質期限の質札を延長または受け出す際に何か月分の質料をもらうか計算する問題が出ます。流質している場合や2or3ヵ月の延長が可能な場合もあります。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bs-docs-section">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="page-header">
+              <h2>設定</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="well bs-component">
+              <div class="form-horizontal">
+                <filedset>
+                  <legend>設定パネル</legend>
+                  <div class="form-group">
+                    <div class="col-xs-9">
+                      <label>問題数</label>
+                      <input id="quantity" type="text" value="15" style="width:3em">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-9">
+                      <label>平成</label>
+                      <input class="form-inline" id="year" type="text" style="width:2em">
+                      <label>年</label>
+                      <input class="form-inline" id="month" type="text" style="width:2em">
+                      <label>月</label>
+                      <input class="form-inline" id="day" type="text" style="width:2em">
+                      <label>日</label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-9">
+                      <button class="btn btn-primary" id="make" type="button">作成</button>
+                    </div>
+                  </div>
+                </filedset>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bs-docs-section">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="page-header">
+              <h2>問題</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div id="output">作成ボタンを押して問題を作成してください。</div>
+          </div>
+        </div>
+      </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+      $('.bs-component [data-toggle="popover"]').popover();
+      $('.bs-component [data-toggle="tooltip"]').tooltip();
+    </script>
+
+
     </div>
-    <div style="display:inline-blocks">
-      <label>平成</label>
-      <input id="year" type="text" style="width:3em">
-      <label>年</label>
-      <input id="month" type="text" style="width:3em">
-      <label>月</label>
-      <input id="day" type="text" style="width:3em">
-      <label>日</label>
-    </div>
-    <div id="output"></div>
   </body>
 </html>

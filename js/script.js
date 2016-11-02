@@ -12,14 +12,22 @@ onload  = function(){
     month.value     = today.getMonth()+1;
     day.value       = today.getDate();
 
-    button.addEventListener("click",function(){
+    button.addEventListener("click",function(){ //ボタンが押されたら実行する
 
-        output.innerHTML    = "";
+        output.innerHTML    = "";                   //出力の初期化
 
-        var size    = parseInt(quantity.value);
+        var size    = parseInt(quantity.value);     //問題数の取得
+        /*
+        var date    = new Date( parseInt(year.value)+1988,
+                                parseInt(month.value)-1,
+                                parseInt(day.value));
+        */
+
+        //var examination = new QuizSetter(today);
+
         var examination = new QuizSetter(parseInt(year.value)+1988,parseInt(month.value),parseInt(day.value));
 
-        output.innerHTML    += "<br><br>" + examination.toString() + "<br><br>";
+        output.innerHTML    += examination.toString() + "<br><br>";
         
         output.innerHTML    += "問題数" + size + "<br>";
 
