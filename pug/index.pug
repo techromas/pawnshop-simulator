@@ -1,13 +1,18 @@
 doctype html
 html(lang="ja")
   head
-    meta(charset    = "utf-8")
-    script(  src    = "script.js"
+    meta(   charset = "utf-8")
+    meta(   http-equiv  = "X-UA-Compatible"
+            content     = "IE-edge")
+    meta(   name    = "viewport"
+            content = "width=device-width,initial-scale=1")
+    script(  src    = "js/script.js"
             type    = "text/javascript")
-    title suzuya
+    title Suzuya
     link(   type    = "text/css"
             rel     = "stylesheet"
-            href    = "style.css")
+            href    = "css/style.css")
+    include include1.txt
   body
     h1 スズヤ日付計算出題プログラム
     div
@@ -28,4 +33,4 @@ html(lang="ja")
                     style   = "width:3em;")
       label 日
     div#output
-
+    include include2.txt
