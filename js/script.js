@@ -28,14 +28,15 @@ onload  = function(){
         var examination = new QuizSetter(parseInt(year.value)+1988,parseInt(month.value),parseInt(day.value));
 
         output.innerHTML    += examination.toString() + "<br><br>";
-        
+
         output.innerHTML    += "問題数" + size + "<br>";
 
         //output.innerHTML    += examination.arraiesToString();     //配列の表示
-        
+
 
         //tableの作成
         var table   = document.createElement("table");
+        table.classList.add("table","table-condensed");
         output.appendChild(table);
         var tHeader = table.insertRow(-1);
         var th0     = tHeader.insertCell(-1);
@@ -59,7 +60,7 @@ onload  = function(){
             tb2.innerHTML   = quiz.extension;
             tb3.innerHTML   = quiz.takeout;
         }
-        
+
     });
 }
 
@@ -67,7 +68,7 @@ onload  = function(){
 
 //コンストラクタ
 var QuizSetter  = function(year,month,day){
-    this.today          = new SuzuyaDate(year,month,day);       //今日の日付
+    this.today          = new ExDate(year,month,day);       //今日の日付
     this.arrayLength    = 128;                                  //配列の長さ(初期状態128)
     this.daysArray;                                             //日付を入れる配列
     this.typesArray;                                            //種類を入れる配列
@@ -77,7 +78,7 @@ var QuizSetter  = function(year,month,day){
 QuizSetter.prototype.initArray  = function(){
     this.daysArray  = new Array(this.arrayLength);
     this.typesArray = new Array(this.arrayLength);
-    this.daysArray[0]   = new SuzuyaDate(this.today.year,this.today.month+3,this.today.day);
+    this.daysArray[0]   = new ExDate(this.today.year,this.today.month+3,this.today.day);
     var type    = 0;
     this.typesArray[0]  = type;
     var typeFlag    = this.today.day;
@@ -94,10 +95,10 @@ QuizSetter.prototype.initArray  = function(){
         tmpDay  += tmpMax;
     }
     var endFlag     = tmpDay;
-    
+
     //配列を埋める
     for(i=1;i<this.daysArray.length;i++){
-        this.daysArray[i]   = new SuzuyaDate(this.daysArray[i-1].year,
+        this.daysArray[i]   = new ExDate(this.daysArray[i-1].year,
                                                 this.daysArray[i-1].month,
                                                 this.daysArray[i-1].day-1);
         this.typesArray[i]  = type;
@@ -206,16 +207,16 @@ class Quiz{
 
 }
 
-/********** class SuzuyaDate **********/
+/********** class ExDate **********/
 
-var SuzuyaDate  = function(year,month,day){
+var ExDate  = function(year,month,day){
     this.year       = year;
     this.month      = month;
     this.day        = day;
     this.rewrite();
 }
 
-SuzuyaDate.prototype.toString   = function(){
+ExDate.prototype.toString   = function(){
     var dayStr  = this.day;
     if(this.day==32){
         dayStr  = "末";
@@ -225,7 +226,7 @@ SuzuyaDate.prototype.toString   = function(){
     return "平成" + (this.year-1988) + "年" + this.month + "月" + dayStr + "日";
 }
 
-SuzuyaDate.prototype.rewrite    = function(){
+ExDate.prototype.rewrite    = function(){
     while(this.day>32){
         this.day    -= 32;
         this.month++;
@@ -244,7 +245,7 @@ SuzuyaDate.prototype.rewrite    = function(){
     }
 }
 
-SuzuyaDate.prototype.maxDay = function(year,month){
+ExDate.prototype.maxDay = function(year,month){
     switch(month){
         case 4:
         case 6:
@@ -268,5 +269,3 @@ SuzuyaDate.prototype.maxDay = function(year,month){
             break;
     }
 }
-
-
