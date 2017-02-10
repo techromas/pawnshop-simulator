@@ -29,11 +29,11 @@ html(lang="ja")
           div.navbar-collapse.collapse#navbar-main
             ul.nav.navbar-nav
               li
-                a dummy1
+                a 未作成
               li
-                a dummy2
+                a 未作成
               li
-                a dummy3
+                a 未作成
 
     div.container
 
@@ -70,7 +70,7 @@ html(lang="ja")
                       input#quantity(   type    = "text"
                                         value   = "15"
                                         style   = "width:3em;")
-                  
+
                   div.form-group
                     div.col-xs-9
                       label 平成
@@ -89,7 +89,7 @@ html(lang="ja")
                       button#make.btn.btn-primary(  type    = "button") 作成
 
 
-      //----- 結果表示 -----    
+      //----- 結果表示 -----
       div.bs-docs-section
         div.row
           div.col-lg-12
@@ -99,5 +99,17 @@ html(lang="ja")
           div.col-lg-12
             div#output 作成ボタンを押して問題を作成してください。
 
-      //----- jQuery -----
-      include include2.txt
+    footer.container-fluid(style="margin-top:30px;padding:30px;")
+          div
+            div.row
+              div.col-sm-12.text-center
+                p
+                  | designed by romas
+                  br
+                  | github :&nbsp;
+                  a(href="https://github.com/techromas/") techromas
+
+
+
+    //----- jQuery -----
+    include include2.txt
